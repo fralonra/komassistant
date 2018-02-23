@@ -4,8 +4,6 @@ import android.graphics.Color
 import android.serialport.SerialPortFinder
 import android.widget.*
 import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk25.coroutines.onItemSelectedListener
-import java.util.ArrayList
 
 /**
  * Created by zoron on 17-11-23.
@@ -53,9 +51,11 @@ class MainActivityUI : AnkoComponent<MainActivity> {
                 comToggleButton = toggleButton {
                     textOn = "Close"
                     textOff = "Open"
-                    setOnClickListener { ui.owner.toggleCom(comSpinner?.selectedItem.toString(),
-                            comBaudrateSpinner?.selectedItem.toString(),
-                            comToggleButton) }
+                    setOnClickListener {
+                        ui.owner.toggleCom(comSpinner?.selectedItem.toString(),
+                                comBaudrateSpinner?.selectedItem.toString(),
+                                comToggleButton)
+                    }
                 }
                 button("Send") {
                     setOnClickListener { ui.owner.send(comTxt.text.toString()) }

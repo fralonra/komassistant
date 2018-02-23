@@ -5,7 +5,6 @@ import android.util.Log
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
-import java.nio.charset.Charset
 import java.util.*
 
 /**
@@ -31,6 +30,10 @@ abstract class Serialer {
     }
 
     fun Serialer(port: String) {
+        this.Serialer(port, baudrate)
+    }
+
+    fun Serialer(baudrate: Int) {
         this.Serialer(port, baudrate)
     }
 

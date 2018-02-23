@@ -1,12 +1,10 @@
 package net.showsan.komassistant
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.support.v7.app.AppCompatActivity
 import android.widget.ToggleButton
-
-import org.jetbrains.anko.*
-
+import org.jetbrains.anko.setContentView
+import org.jetbrains.anko.toast
 import java.io.IOException
 import java.security.InvalidParameterException
 import java.util.*
@@ -23,6 +21,12 @@ class MainActivity : AppCompatActivity() {
 
         initView()
         dispQueue.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        if (com.isOpen()) closeCom(com)
     }
 
     fun initView() {
@@ -115,7 +119,7 @@ class MainActivity : AppCompatActivity() {
                 val data = queueList.poll()
                 while (data != null) {
                     runOnUiThread { dispRecData(data) }
-                    Thread.sleep(100)
+                    Thread.sleep(10)
                     break
                 }
             }
